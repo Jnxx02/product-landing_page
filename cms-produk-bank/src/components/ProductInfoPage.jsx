@@ -15,6 +15,11 @@ export default function ProductInfoPage() {
     { icon: <Vault className="w-5 h-5" />, label: "E-Channel", action: () => window.open('https://hasamitra.com/e-channel', '_blank') },
   ];
 
+  // Filter menu items based on search query
+  const filteredMenuItems = menuItems.filter(item =>
+    item.label.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <div className="min-h-screen flex flex-col bg-[#e6fff5] font-sans">
       {/* Header */}
@@ -44,7 +49,7 @@ export default function ProductInfoPage() {
 
       {/* Menu */}
       <div className="mt-[-40px] bg-white rounded-2xl p-4 shadow-sm divide-y divide-[#006b4c]/20 relative z-10 mx-4">
-        {menuItems.map((item, index) => (
+        {filteredMenuItems.map((item, index) => (
           <div
             key={index}
             className="flex items-center justify-between py-4 hover:bg-[#f4a261]/10 px-2 rounded-lg cursor-pointer"
