@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 export default function ProductList({ products, onEdit, onDelete }) {
   return (
     <div className="mt-6">

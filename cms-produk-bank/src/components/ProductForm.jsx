@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
+
 export default function ProductForm({ onSubmit, product }) {
   const [form, setForm] = useState({
     type: 'produk',
@@ -36,6 +37,7 @@ export default function ProductForm({ onSubmit, product }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log("Submitting form:", form);
     onSubmit(form);
     setForm({
       type: 'produk',
