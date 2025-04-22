@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import HasamitraLandingPage from './HasamitraLandingPage';
 import MainApp from './MainApp';
 import ProductInfoPage from './components/ProductInfoPage';
-import SavingsPage from './components/SavingsPage';
+import PromoPage from './components/PromoPage';
 
 export default function App() {
   return (
@@ -12,7 +12,7 @@ export default function App() {
         <Route path="/" element={<HasamitraLandingPage />} />
         <Route path="/main" element={<MainApp />} />
         <Route path="/informasi-produk" element={<ProductInfoPage />} />
-        <Route path="/tabungan" element={<SavingsPage />} />
+        <Route path="/promo" element={<PromoPage />} />
       </Routes>
     </Router>
   );

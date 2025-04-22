@@ -9,7 +9,7 @@ export default function ProductInfoPage() {
   const [searchQuery, setSearchQuery] = useState("");
 
   const menuItems = [
-    { icon: <Wallet className="w-5 h-5" />, label: "Tabungan", action: () => navigate('/tabungan') },
+    { icon: <Wallet className="w-5 h-5" />, label: "Tabungan", action: () => window.open('https://hasamitra.com/tabungan', '_blank') },
     { icon: <BanknoteArrowUp className="w-5 h-5" />, label: "Deposito", action: () => window.open('https://hasamitra.com/deposito', '_blank') },
     { icon: <CreditCard className="w-5 h-5" />, label: "Kredit", action: () => window.open('https://hasamitra.com/kredit', '_blank') },
     { icon: <Vault className="w-5 h-5" />, label: "E-Channel", action: () => window.open('https://hasamitra.com/e-channel', '_blank') },

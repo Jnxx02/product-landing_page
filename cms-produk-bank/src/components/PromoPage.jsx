@@ -4,7 +4,7 @@ import { Search, Banknote } from "lucide-react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faInstagram, faYoutube, faTiktok } from '@fortawesome/free-brands-svg-icons';
 
-export default function SavingsPage() {
+export default function PromoPage() {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
 

@@ -22,6 +22,10 @@ export default function HasamitraLandingPage() {
     navigate('/informasi-produk');
   };
 
+  const filteredMenuItems = menuItems.filter(item =>
+    item.label.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <div className="min-h-screen flex flex-col bg-[#e6fff5] font-sans">
       {/* Header */}
@@ -48,6 +52,7 @@ export default function HasamitraLandingPage() {
         </div>
         <div className="flex items-center justify-center gap-4 mt-4">
           <img
+          // Logo Hasamitra
             src="/hasamitra-logo.jpg"
             alt="Hasamitra Logo"
             className="h-20 w-auto"
@@ -61,7 +66,7 @@ export default function HasamitraLandingPage() {
 
       {/* Menu */}
       <div className="mt-[-40px] bg-white rounded-2xl p-4 shadow-sm divide-y divide-[#006b4c]/20 relative z-10 mx-4">
-        {menuItems.map((item, index) => (
+        {filteredMenuItems.map((item, index) => (
           <div
             key={index}
             className="flex items-center justify-between py-4 hover:bg-[#f4a261]/10 px-2 rounded-lg cursor-pointer"
