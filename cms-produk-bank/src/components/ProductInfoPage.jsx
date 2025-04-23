@@ -23,7 +23,7 @@ export default function ProductInfoPage() {
   return (
     <div className="min-h-screen flex flex-col bg-[#e6fff5] font-sans">
       {/* Header */}
-      <header className="text-white p-6 relative" style={{
+      <header className="text-white p-6 relative justify-center" style={{
         backgroundImage: "url('/BG.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
@@ -41,14 +41,14 @@ export default function ProductInfoPage() {
             <Search className="absolute right-4 top-1/2 transform -translate-y-1/2 text-[#006b4c]" />
           </div>
         </div>
-        <div className="flex items-center justify-center gap-4 mt-4">
-          <img src="/hasamitra-logo.jpg" alt="Hasamitra Logo" className="h-20 w-auto" />
-          <h1 className="text-4xl font-bold leading-tight">Informasi Produk</h1>
+        <div className="flex-col flex items-center justify-center gap-4 mt-4 w-full">
+          <img src="/hasamitra-logo.jpg" alt="Hasamitra Logo" className="h-30 w-auto" />
+          <h1 className="text-4xl font-bold leading-tight text-center">Informasi Produk</h1>
         </div>
       </header>
 
       {/* Menu */}
-      <div className="mt-[-40px] bg-white rounded-2xl p-4 shadow-sm divide-y divide-[#006b4c]/20 relative z-10 mx-4">
+      <div className="mt-[-40px] mx-6 bg-white rounded-2xl p-4 shadow-sm divide-y divide-[#006b4c]/20 relative z-10 mx-4">
         {filteredMenuItems.map((item, index) => (
           <div
             key={index}
@@ -65,21 +65,21 @@ export default function ProductInfoPage() {
       </div>
 
       {/* Back Button */}
-      <div className="flex justify-center mt-4">
+      <div className="flex justify-left ml-6 mt-4">
         <button
           onClick={() => navigate(-1)}
           className="bg-[#006b4c] text-white py-2 px-4 rounded-lg shadow-md hover:bg-[#00543a]"
         >
-          Kembali
+          Kembali ke Halaman Utama
         </button>
       </div>
 
       {/* Spacer */}
-      <div className="flex-grow"></div>
+      <div className="flex-grow h-10"></div>
 
       {/* Footer */}
-      <footer className="bg-[#f0f0f0] text-[#333] text-sm py-8 mt-4">
-        <div className="container mx-auto grid grid-cols-3 gap-8 px-4 text-left">
+      <footer className="bg-[#f0f0f0] text-[#333] text-sm py-8 mt-auto">
+        <div className="container mx-auto px-4 text-left grid grid-cols-1 gap-8 md:grid-cols-3">
           <div>
             <h3 className="font-bold mb-2">Kantor Pusat</h3>
             <p>Jln. DR. Wahidin Sudirohusodo<br />
@@ -90,22 +90,22 @@ export default function ProductInfoPage() {
             <a href="https://hasamitra.com/lokasi" className="text-[#f4a261] hover:underline">Lokasi kantor lainnya</a>
           </div>
           <div>
-            <h3 className="font-bold mb-2 text-center">Hubungi Kami</h3>
+            <h3 className="font-bold mb-2">Hubungi Kami</h3>
             <p>
-              <a href="tel:+624113652000" className="flex items-center justify-center gap-2 hover:underline">
+              <a href="tel:+624113652000" className="flex items-center gap-2 hover:underline">
                 📞 Call Center (365 2000)
               </a>
-              <a href="https://api.whatsapp.com/send?phone=6281371200097&text=Halo%20Hasamitra%20:)" className="flex items-center justify-center gap-2 hover:underline">
+              <a href="https://api.whatsapp.com/send?phone=6281371200097&text=Halo%20Hasamitra%20:)" className="flex items-center gap-2 hover:underline">
                 💬 Mica (0813 7120 0097)
               </a>
-              <a href="mailto:bpr@hasamitra.com" className="flex items-center justify-center gap-2 hover:underline">
+              <a href="mailto:bpr@hasamitra.com" className="flex items-center gap-2 hover:underline">
                 📧 bpr@hasamitra.com
               </a>
             </p>
           </div>
           <div>
-            <h3 className="font-bold mb-2 text-center">Media Sosial</h3>
-            <div className="flex justify-center gap-4">
+            <h3 className="font-bold mb-2">Media Sosial</h3>
+            <div className="flex gap-4">
               <a href="https://www.facebook.com/hasamitra" className="hover:underline">
                 <FontAwesomeIcon icon={faFacebook} className="w-6 h-6" />
               </a>

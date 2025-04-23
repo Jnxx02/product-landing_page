@@ -1,25 +1,51 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Search, Banknote } from "lucide-react";
+import { Search } from "lucide-react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faInstagram, faYoutube, faTiktok } from '@fortawesome/free-brands-svg-icons';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { Carousel } from 'react-responsive-carousel';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 export default function PromoPage() {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
-  const menuItems = [
-    { icon: <Banknote className="w-5 h-5" />, label: "Tabungan Si Mitro", action: () => window.open('https://hasamitra.com/simitro', '_blank') },
-    { icon: <Banknote className="w-5 h-5" />, label: "Tabungan Si Mitra", action: () => window.open('https://hasamitra.com/simitra', '_blank') },
-    { icon: <Banknote className="w-5 h-5" />, label: "Tabungan Si Mitra Bagi Rejeki", action: () => window.open('https://hasamitra.com/simitra-bagi-rejeki', '_blank') },
-    { icon: <Banknote className="w-5 h-5" />, label: "Tabungan Si Mitra Muda", action: () => window.open('https://hasamitra.com/simitra-muda', '_blank') },
-    { icon: <Banknote className="w-5 h-5" />, label: "Tabungan Ariska", action: () => window.open('https://hasamitra.com/ariska', '_blank') },
-    { icon: <Banknote className="w-5 h-5" />, label: "Tabungan New Ariska", action: () => window.open('https://hasamitra.com/new-ariska', '_blank') },
-    { icon: <Banknote className="w-5 h-5" />, label: "Tabungan TabunganKu", action: () => window.open('https://hasamitra.com/tabunganku', '_blank') },
-    { icon: <Banknote className="w-5 h-5" />, label: "Tabungan Mitra Rencana", action: () => window.open('https://hasamitra.com/mitra-rencana', '_blank') },
-    { icon: <Banknote className="w-5 h-5" />, label: "Tabungan Simpel", action: () => window.open('https://hasamitra.com/simpel', '_blank') },
-    { icon: <Banknote className="w-5 h-5" />, label: "Tabungan Mitra Pensiun", action: () => window.open('https://hasamitra.com/mitra-pensiun', '_blank') },
+  const promoItems = [
+    { image: '/promo-1.jpg', url: 'https://hasamitra.com/promo1', 
+    label: 'Gratis Biaya Admin Transfer Antar Bank', 
+    description: 'Tidak perlu memikirkan biaya admin untuk transfer antar bank di Hasamitra Mobile.' },
+    { image: '/promo-2.webp', url: 'https://hasamitra.com/promo2', 
+    label: 'Promo 2', 
+    description: 'Description for Promo 2' },
+    { image: '/promo-1.jpg', url: 'https://hasamitra.com/promo3', 
+    label: 'Promo 3', 
+    description: 'Description for Promo 3' },
   ];
+
+  const filteredPromoItems = promoItems.filter(item =>
+    item.label.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    item.description.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > lastScrollY) {
+        setIsVisible(false);
+      } else {
+        setIsVisible(true);
+      }
+      setLastScrollY(window.scrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [lastScrollY]);
 
   return (
     <div className="min-h-screen flex flex-col bg-[#e6fff5] font-sans">
@@ -28,7 +54,6 @@ export default function PromoPage() {
         backgroundImage: "url('/BG.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
-        paddingBottom: "4rem"
       }}>
         <div className="mb-4 px-4">
           <div className="relative">
@@ -42,45 +67,89 @@ export default function PromoPage() {
             <Search className="absolute right-4 top-1/2 transform -translate-y-1/2 text-[#006b4c]" />
           </div>
         </div>
-        <div className="flex items-center justify-center gap-4 mt-4">
-          <img src="/hasamitra-logo.jpg" alt="Hasamitra Logo" className="h-20 w-auto" />
-          <h1 className="text-4xl font-bold leading-tight">Daftar Jenis Tabungan</h1>
+        <div className="flex flex-col items-center justify-center gap-4 mt-4 w-full">
+          <img src="/hasamitra-logo.jpg" alt="Hasamitra Logo" className="h-30 w-auto" />
+          <h1 className="text-4xl font-bold leading-tight text-center">Daftar Promo</h1>
         </div>
       </header>
 
-      {/* Menu */}
-      <div className="mt-[-40px] bg-white rounded-2xl p-4 shadow-sm divide-y divide-[#006b4c]/20 relative z-10 mx-4">
-        {menuItems.map((item, index) => (
-          <div
-            key={index}
-            className="flex items-center justify-between py-4 hover:bg-[#f4a261]/10 px-2 rounded-lg cursor-pointer"
-            onClick={item.action}
-          >
-            <div className="flex items-center gap-3 text-[#006b4c]">
-              {item.icon}
-              <span className="text-base font-medium">{item.label}</span>
+      {/* Promo Carousel */}
+      <Carousel
+        showThumbs={false}
+        showIndicators={true}
+        infiniteLoop
+        useKeyboardArrows
+        autoPlay
+        className="relative"
+        renderIndicator={(onClickHandler, isSelected, index, label) => {
+          const defStyle = {
+            marginLeft: 20,
+            cursor: "pointer",
+            width: 20,
+            height: 8,
+            borderRadius: 4,
+            display: "inline-block",
+            backgroundColor: "#ccc",
+            position: "relative",
+            overflow: "hidden",
+          };
+
+          const loadingStyle = {
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            backgroundColor: "#00543a",
+            transform: isSelected ? "translateX(0)" : "translateX(-100%)",
+            transition: "transform 2s linear",
+          };
+
+          return (
+            <div
+              style={defStyle}
+              onClick={onClickHandler}
+              onKeyDown={onClickHandler}
+              value={index}
+              key={index}
+              role="button"
+              tabIndex={0}
+              aria-label={`${label} ${index + 1}`}
+            >
+              <div style={loadingStyle} />
             </div>
-            <span className="text-[#006b4c]">›</span>
+          );
+        }}
+      >
+        {filteredPromoItems.map((item, index) => (
+          <div key={index} className="grid md:grid-cols-2 items-center bg-[#e6fff5] p-4 md:p-8 max-w-3xl mx-auto">
+            <img src={item.image} alt={item.label} className="w-full h-auto object-contain rounded-lg" />
+            <div className="text-left ml-0 md:ml-4 mt-4 md:mt-0">
+              <h2 className="text-xl md:text-3xl font-bold text-[#006b4c] mb-2 md:mb-4">{item.label}</h2>
+              <p className="text-sm md:text-lg text-[#006b4c] mb-2 md:mb-4">{item.description}</p>
+              <button className="bg-[#006b4c] text-white py-2 px-4 rounded-full shadow-md hover:bg-blue-700 mt-4 mb-6">
+                Baca Selengkapnya
+              </button>
+            </div>
           </div>
         ))}
-      </div>
-
-      {/* Back Button */}
-      <div className="flex justify-center mt-4">
-        <button
-          onClick={() => navigate(-1)}
-          className="bg-[#006b4c] text-white py-2 px-4 rounded-lg shadow-md hover:bg-[#00543a]"
-        >
-          Kembali
-        </button>
-      </div>
+      </Carousel>
 
       {/* Spacer */}
-      <div className="flex-grow"></div>
+      <div className="flex-grow h-4"></div>
+
+      {/* Back Button as Icon */}
+      {isVisible && (
+        <div className="fixed top-4 left-4">
+          <button onClick={() => navigate(-1)} className="bg-[#006b4c] text-white p-3 rounded-full shadow-lg hover:bg-[#00543a]">
+            <FontAwesomeIcon icon={faArrowLeft} className="w-6 h-6" />
+          </button>
+        </div>
+      )}
 
       {/* Footer */}
-      <footer className="bg-[#f0f0f0] text-[#333] text-sm py-8 mt-4">
-        <div className="container mx-auto grid grid-cols-3 gap-8 px-4 text-left">
+      <footer className="bg-[#f0f0f0] text-[#333] text-sm py-8 mt-auto">
+        <div className="container mx-auto px-4 text-left grid grid-cols-1 gap-8 md:grid-cols-3">
           <div>
             <h3 className="font-bold mb-2">Kantor Pusat</h3>
             <p>Jln. DR. Wahidin Sudirohusodo<br />
@@ -91,22 +160,22 @@ export default function PromoPage() {
             <a href="https://hasamitra.com/lokasi" className="text-[#f4a261] hover:underline">Lokasi kantor lainnya</a>
           </div>
           <div>
-            <h3 className="font-bold mb-2 text-center">Hubungi Kami</h3>
+            <h3 className="font-bold mb-2">Hubungi Kami</h3>
             <p>
-              <a href="tel:+624113652000" className="flex items-center justify-center gap-2 hover:underline">
+              <a href="tel:+624113652000" className="flex items-center gap-2 hover:underline">
                 📞 Call Center (365 2000)
               </a>
-              <a href="https://api.whatsapp.com/send?phone=6281371200097&text=Halo%20Hasamitra%20:)" className="flex items-center justify-center gap-2 hover:underline">
+              <a href="https://api.whatsapp.com/send?phone=6281371200097&text=Halo%20Hasamitra%20:)" className="flex items-center gap-2 hover:underline">
                 💬 Mica (0813 7120 0097)
               </a>
-              <a href="mailto:bpr@hasamitra.com" className="flex items-center justify-center gap-2 hover:underline">
+              <a href="mailto:bpr@hasamitra.com" className="flex items-center gap-2 hover:underline">
                 📧 bpr@hasamitra.com
               </a>
             </p>
           </div>
           <div>
-            <h3 className="font-bold mb-2 text-center">Media Sosial</h3>
-            <div className="flex justify-center gap-4">
+            <h3 className="font-bold mb-2">Media Sosial</h3>
+            <div className="flex gap-4">
               <a href="https://www.facebook.com/hasamitra" className="hover:underline">
                 <FontAwesomeIcon icon={faFacebook} className="w-6 h-6" />
               </a>
