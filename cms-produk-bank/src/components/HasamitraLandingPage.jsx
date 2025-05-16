@@ -140,7 +140,7 @@ export default function HasamitraLandingPage() {
               <h2 className="text-xl md:text-3xl font-bold text-[#006b4c] mb-2 md:mb-4">{item.label}</h2>
               <p className="text-sm md:text-lg text-[#006b4c] mb-2 md:mb-4">{item.description}</p>
               <button
-                onClick={() => window.location.href = '/promo'}
+                onClick={() => navigate('/promo')}
                 className="bg-[#006b4c] text-white py-2 px-4 rounded-full shadow-md hover:bg-[#1ebe5b] mt-4 mb-6"
               >
                 Baca Selengkapnya
