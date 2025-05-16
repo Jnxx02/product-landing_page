@@ -3,11 +3,15 @@ import { Search, Info, Percent, Wallet, Vault, FileText, Landmark} from "lucide-
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faInstagram, faYoutube, faTiktok } from '@fortawesome/free-brands-svg-icons';
+import { Carousel } from 'react-responsive-carousel';
+import { promoItems } from "./PromoPage";
 
 export default function HasamitraLandingPage() {
   const [searchQuery, setSearchQuery] = useState("");
-  const [showProductInfo, setShowProductInfo] = useState(false);
-  const [menuItems, setMenuItems] = useState([
+  const [showProductInfo] = useState(false);
+
+  // Menu di halaman utama
+  const [menuItems] = useState([
     { icon: <Info className="w-5 h-5" />, label: "Informasi Produk", action: () => handleProductInfoClick() },
     { icon: <Percent className="w-5 h-5" />, label: "Promo", action: () => navigate('/promo') },
     { icon: <Wallet className="w-5 h-5" />, label: "Suku Bunga Tabungan", action: () => window.open('https://hasamitra.com/bantuan#tabungan', '_blank') },
@@ -15,6 +19,11 @@ export default function HasamitraLandingPage() {
     { icon: <FileText className="w-5 h-5" />, label: "Ajukan Kredit", action: () => window.open('https://kredimo.hasamitra.com/', '_blank') },
     { icon: <Landmark className="w-5 h-5" />, label: "ATM", action: () => window.open('https://hasamitra.com/mitra-atm', '_blank') },
   ]);
+
+  const filteredPromoItems = promoItems.filter(item =>
+    item.label.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    item.description.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   const navigate = useNavigate();
 
@@ -32,7 +41,7 @@ export default function HasamitraLandingPage() {
       <header
         className="text-white p-6 relative flex flex-col items-center justify-center"
         style={{
-          backgroundImage: "url('/BG.jpg')",
+          backgroundImage: "url('/BG.jpg')", // Ganti Background
           backgroundSize: "cover",
           backgroundPosition: "center",
           paddingBottom: "4rem"
@@ -75,6 +84,71 @@ export default function HasamitraLandingPage() {
           </div>
         ))}
       </div>
+
+      {/* Carousel untuk halaman utama */}
+      <Carousel
+        showThumbs={false}
+        showIndicators={true}
+        infiniteLoop
+        useKeyboardArrows
+        autoPlay
+        className="relative"
+        renderIndicator={(onClickHandler, isSelected, index, label) => {
+          const defStyle = {
+            marginLeft: 20,
+            cursor: "pointer",
+            width: 20,
+            height: 8,
+            borderRadius: 4,
+            display: "inline-block",
+            backgroundColor: "#ccc",
+            position: "relative",
+            overflow: "hidden",
+          };
+
+          const loadingStyle = {
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            backgroundColor: "#00543a",
+            transform: isSelected ? "translateX(0)" : "translateX(-100%)",
+            transition: "transform 2s linear",
+          };
+
+          return (
+            <div
+              style={defStyle}
+              onClick={onClickHandler}
+              onKeyDown={onClickHandler}
+              value={index}
+              key={index}
+              role="button"
+              tabIndex={0}
+              aria-label={`${label} ${index + 1}`}
+            >
+              <div style={loadingStyle} />
+            </div>
+          );
+        }}
+      >
+        {filteredPromoItems.map((item, index) => (
+          <div key={index} className="grid md:grid-cols-2 items-center bg-[#e6fff5] p-4 md:p-8 max-w-3xl mx-auto">
+            <img src={item.image} alt={item.label} className="w-full h-auto object-contain rounded-lg" />
+            <div className="text-left ml-0 md:ml-4 mt-4 md:mt-0">
+              <h2 className="text-xl md:text-3xl font-bold text-[#006b4c] mb-2 md:mb-4">{item.label}</h2>
+              <p className="text-sm md:text-lg text-[#006b4c] mb-2 md:mb-4">{item.description}</p>
+              <button
+                onClick={() => window.location.href = '/promo'}
+                className="bg-[#006b4c] text-white py-2 px-4 rounded-full shadow-md hover:bg-[#1ebe5b] mt-4 mb-6"
+              >
+                Baca Selengkapnya
+              </button>
+            </div>
+          </div>
+        ))}
+      </Carousel>
 
       {/* Spacer */}
       <div className="flex-grow h-10"></div>
@@ -128,6 +202,8 @@ export default function HasamitraLandingPage() {
           <p>BPR Hasamitra berizin dan diawasi oleh <strong>Otoritas Jasa Keuangan (OJK)</strong> dan merupakan peserta penjaminan <strong>Lembaga Penjamin Simpanan (LPS)</strong>.</p>
           <p className="mt-2">© 2005 - {new Date().getFullYear()} BPR Hasamitra All Rights Reserved</p>
         </div>
+
+        {/* Floating Whatsapp Icon */}
         <a
           href="https://api.whatsapp.com/send?phone=6281371200097&text=Halo%20Hasamitra%20:)"
           className="fixed bottom-6 right-6 bg-[#25D366] hover:bg-[#1ebe5b] text-white p-4 rounded-full shadow-lg"

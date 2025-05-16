@@ -8,6 +8,7 @@ export default function ProductInfoPage() {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
 
+  // Menu Produk
   const menuItems = [
     { icon: <Wallet className="w-5 h-5" />, label: "Tabungan", action: () => window.open('https://hasamitra.com/tabungan', '_blank') },
     { icon: <BanknoteArrowUp className="w-5 h-5" />, label: "Deposito", action: () => window.open('https://hasamitra.com/deposito', '_blank') },
@@ -24,7 +25,7 @@ export default function ProductInfoPage() {
     <div className="min-h-screen flex flex-col bg-[#e6fff5] font-sans">
       {/* Header */}
       <header className="text-white p-6 relative justify-center" style={{
-        backgroundImage: "url('/BG.jpg')",
+        backgroundImage: "url('/BG.jpg')", // Ganti Background
         backgroundSize: "cover",
         backgroundPosition: "center",
         paddingBottom: "4rem"

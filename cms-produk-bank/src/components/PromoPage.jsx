@@ -13,6 +13,8 @@ export default function PromoPage() {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
+  // Promo yang ditampilkan di halaman promo
+  // Sesuaikan semua data dibawah!!
   const promoItems = [
     { image: '/promo-1.jpg', url: 'https://hasamitra.com/promo1', 
     label: 'Gratis Biaya Admin Transfer Antar Bank', 
@@ -51,7 +53,7 @@ export default function PromoPage() {
     <div className="min-h-screen flex flex-col bg-[#e6fff5] font-sans">
       {/* Header */}
       <header className="text-white p-6 relative" style={{
-        backgroundImage: "url('/BG.jpg')",
+        backgroundImage: "url('/BG.jpg')", // Ganti Background
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}>
@@ -127,7 +129,10 @@ export default function PromoPage() {
             <div className="text-left ml-0 md:ml-4 mt-4 md:mt-0">
               <h2 className="text-xl md:text-3xl font-bold text-[#006b4c] mb-2 md:mb-4">{item.label}</h2>
               <p className="text-sm md:text-lg text-[#006b4c] mb-2 md:mb-4">{item.description}</p>
-              <button className="bg-[#006b4c] text-white py-2 px-4 rounded-full shadow-md hover:bg-blue-700 mt-4 mb-6">
+              <button
+                onClick={() => window.location.href = item.url}
+                className="bg-[#006b4c] text-white py-2 px-4 rounded-full shadow-md hover:bg-[#1ebe5b] mt-4 mb-6"
+              >
                 Baca Selengkapnya
               </button>
             </div>
@@ -196,6 +201,8 @@ export default function PromoPage() {
           <p>BPR Hasamitra berizin dan diawasi oleh <strong>Otoritas Jasa Keuangan (OJK)</strong> dan merupakan peserta penjaminan <strong>Lembaga Penjamin Simpanan (LPS)</strong>.</p>
           <p className="mt-2">© 2005 - {new Date().getFullYear()} BPR Hasamitra All Rights Reserved</p>
         </div>
+
+        {/* Floating Whatsapp Icon */}
         <a
           href="https://api.whatsapp.com/send?phone=6281371200097&text=Halo%20Hasamitra%20:)"
           className="fixed bottom-6 right-6 bg-[#25D366] hover:bg-[#1ebe5b] text-white p-4 rounded-full shadow-lg"
@@ -216,3 +223,17 @@ export default function PromoPage() {
     </div>
   );
 }
+
+// Promo yang ditampilkan di Halaman Utama
+// Sesuaikan gambar, label, dan deskripsi promo!
+export const promoItems = [
+  { image: '/promo-2.webp',
+    label: 'Gratis Biaya Admin Transfer Antar Bank', 
+    description: 'Tidak perlu memikirkan biaya admin untuk transfer antar bank di Hasamitra Mobile.' },
+  { image: '/promo-2.webp',
+    label: 'Promo 2', 
+    description: 'Description for Promo 2' },
+  { image: '/promo-2.webp',
+    label: 'Promo 3', 
+    description: 'Description for Promo 3' },
+];
