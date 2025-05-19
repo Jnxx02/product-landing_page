@@ -84,6 +84,3 @@ You can deploy the contents of the dist/ (Vite) or build/ (CRA) folder to platfo
 - Firebase Hosting
 
 ---
-
-## ✅ License
-This project is licensed under the MIT License – feel free to use and adapt it with attribution.
