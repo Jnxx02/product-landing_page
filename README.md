@@ -49,9 +49,7 @@ npm install
 npm run dev
 ```
 ### 4. Access in Browser
-```arduino
-http://localhost:5173
-```
+Open your browser and access `http://localhost:5173` to view the application.
 
 ---
 
