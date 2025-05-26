@@ -88,7 +88,7 @@ export default function ProductInfoPage() {
               Ende, Wajo, Kota Makassar 90174<br />
               Sulawesi Selatan, Indonesia
             </p>
-            <a href="https://hasamitra.com/lokasi" className="text-[#f4a261] hover:underline">Lokasi kantor lainnya</a>
+            <a href="https://hasamitra.com/lokasi" className="text-[#f4a261] hover:underline">Lokasi kantor lainnya →</a>
           </div>
           <div>
             <h3 className="font-bold mb-2">Hubungi Kami</h3>

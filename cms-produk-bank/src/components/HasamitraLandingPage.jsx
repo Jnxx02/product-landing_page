@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Search, Info, Percent, Wallet, Vault, FileText, Landmark} from "lucide-react";
+import { Search, Info, Percent, Wallet, Vault, FileText, Landmark, MessageSquare } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faInstagram, faYoutube, faTiktok } from '@fortawesome/free-brands-svg-icons';
@@ -18,6 +18,7 @@ export default function HasamitraLandingPage() {
     { icon: <Vault className="w-5 h-5" />, label: "Suku Bunga Deposito", action: () => window.open('https://hasamitra.com/bantuan#deposito', '_blank') },
     { icon: <FileText className="w-5 h-5" />, label: "Ajukan Kredit", action: () => window.open('https://kredimo.hasamitra.com/', '_blank') },
     { icon: <Landmark className="w-5 h-5" />, label: "ATM", action: () => window.open('https://hasamitra.com/mitra-atm', '_blank') },
+    { icon: <MessageSquare className="w-5 h-5" />, label: "Pengaduan Nasabah", action: () => window.open('https://hasamitra.com/pengaduan-nasabah', '_blank') },
   ]);
 
   const filteredPromoItems = promoItems.filter(item =>
@@ -28,7 +29,7 @@ export default function HasamitraLandingPage() {
   const navigate = useNavigate();
 
   const handleProductInfoClick = () => {
-    navigate('/informasi-produk');
+    navigate('/product');
   };
 
   const filteredMenuItems = menuItems.filter(item =>
@@ -163,7 +164,7 @@ export default function HasamitraLandingPage() {
               Ende, Wajo, Kota Makassar 90174<br />
               Sulawesi Selatan, Indonesia
             </p>
-            <a href="https://hasamitra.com/lokasi" className="text-[#f4a261] hover:underline">Lokasi kantor lainnya</a>
+            <a href="https://hasamitra.com/lokasi" className="text-[#f4a261] hover:underline">Lokasi kantor lainnya →</a>
           </div>
           <div>
             <h3 className="font-bold mb-2">Hubungi Kami</h3>

@@ -9,7 +9,7 @@ export default function App() {
     <Router>
       <Routes>
         <Route path="/" element={<HasamitraLandingPage />} />
-        <Route path="/informasi-produk" element={<ProductInfoPage />} />
+        <Route path="/product" element={<ProductInfoPage />} />
         <Route path="/promo" element={<PromoPage />} />
       </Routes>
     </Router>
