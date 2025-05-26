@@ -81,6 +81,7 @@ export default function PromoPage() {
         showIndicators={true}
         infiniteLoop
         useKeyboardArrows
+        showStatus={false}
         autoPlay
         className="relative"
         renderIndicator={(onClickHandler, isSelected, index, label) => {

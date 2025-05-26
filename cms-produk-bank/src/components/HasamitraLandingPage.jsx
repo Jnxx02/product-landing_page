@@ -93,6 +93,7 @@ export default function HasamitraLandingPage() {
         infiniteLoop
         useKeyboardArrows
         autoPlay
+        showStatus={false}
         className="relative"
         renderIndicator={(onClickHandler, isSelected, index, label) => {
           const defStyle = {
